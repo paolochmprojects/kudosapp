@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={clsx(inter.className, "flex p-8 min-h-screen")}>
+      <body className={clsx(inter.className, "flex p-4 min-h-screen")}>
         <div className="flex-grow border-2 border-black">
           {children}
         </div>

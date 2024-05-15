@@ -29,6 +29,9 @@ yarn-error.log*
 .env*.local
 .env
 
+# csv test data
+test.csv
+
 # vercel
 .vercel
 

@@ -11,11 +11,6 @@ export const metadata: Metadata = {
 
 const LoginPage = () => {
     
-    if(cookies().get('token')){
-        //TODO: validate status with api
-        redirect('/')
-    }
-    
     return (<main className="flex flex-col gap-8 h-full justify-center items-center">
         <h1 className="text-5xl p-4">
             Sistema de Carga de datos

@@ -29,7 +29,7 @@ export async function loginApi(params: { email: string, password: string }): Pro
             cookies().set('token', token, {
                 secure: true, 
                 httpOnly: true, 
-                maxAge: 60 * 1
+                maxAge: 60 * 15, // 15 minutes
             })
             return { success: true, message: 'Sesion iniciada' }
         } else {

@@ -1,35 +1,41 @@
 "use client"
-
 import { loginApi } from "@/app/actions/loginSubmit";
 import clsx from "clsx";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+
 import Alert from "../ui/alert";
+
+interface LoginForm {
+  email: string
+  password: string
+}
 
 const LoginForm = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>()
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const [passwordVisible, setPasswordVisible] = useState(false)
-  
 
-  const onSubmit = async (data: any) => {
+  const router = useRouter()
+
+  const onSubmit = async (data: LoginForm) => {
     setLoading(true)
     const formData = data as { email: string, password: string }
     const response = await loginApi(formData)
 
-
-    console.log(response)
     if (!response.success) {
       setError(true)
       setErrorMessage(response.message)
-    } else {
-      window.history.pushState({}, '', '/')
-    }
+      setLoading(false)
 
-    setLoading(false)
+    } else {
+      setLoading(false)
+      router.push('/')
+    }
   }
 
   return (
@@ -61,11 +67,11 @@ const LoginForm = () => {
           disabled={loading}
         />
         <label className="flex gap-2">
-          <input 
-          type="checkbox" 
-          checked={passwordVisible} 
-          onChange={() => setPasswordVisible(!passwordVisible)} 
-          className="ml-2 w-4" />
+          <input
+            type="checkbox"
+            checked={passwordVisible}
+            onChange={() => setPasswordVisible(!passwordVisible)}
+            className="ml-2 w-4" />
           Mostrar contraseña.
         </label>
         {

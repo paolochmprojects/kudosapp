@@ -5,11 +5,6 @@ import { Csvresponse } from "./interface/csvresponse.interface"
 
 const HOST_BASE_API = process.env.HOST_BASE_API
 
-interface SubmitReponse {
-    success: boolean,
-    message: string
-}
-
 export async function loadUserData(formData: FormData) : Promise<Csvresponse> {
 
     const token = cookies().get('token')

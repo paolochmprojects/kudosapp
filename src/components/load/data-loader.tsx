@@ -36,6 +36,7 @@ const DataLoader = () => {
         }
 
         setSuccessMessage(reponse.message)
+        setErrorMessage(`The (${reponse.result.length}) record listed bellow encountered errors, Please reactify these issues and retry.`)
         setResults(reponse.result)
         setLoading(false)
         setLoaded(true)
@@ -82,13 +83,10 @@ const DataLoader = () => {
                 </button>
 
                 <p className="text-2xl p-6">{errorMessage}</p>
-                <div className="flex flex-col justify-center gap-4 py-6 overflow-scroll">
-
-                {results.map((result, index) => (
-                    <RegisterCsvForm key={index} index={result.index} data={result.data} errors={result.errors} />
-                    
-                ))}
-
+                <div className="flex flex-col mx-auto items-center max-h-[50vh] gap-4 py-6 px-3 overflow-y-auto">
+                    {results.map((result, index) => (
+                        <RegisterCsvForm key={index} index={result.index} data={result.data} errors={result.errors} />
+                    ))}
                 </div>
 
             </div>}

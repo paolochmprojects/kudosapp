@@ -6,7 +6,7 @@ export default async function Home() {
     <h1 className="text-5xl pl-10 pt-6">
       Sistema de Carga de datos
     </h1>
-    <div className="flex-grow mb-14 mx-14 rounded-2xl border-2 border-black">
+    <div className="flex-grow m-14 rounded-2xl border-2 border-black">
       <DataLoader/>
     </div>
   </main>);
